@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         setContentView(R.layout.activity_main)
 
-        // Connect XML objects to Kotlin
         btnAdd = findViewById(R.id.btnAdd)
         btnSubtract = findViewById(R.id.btnSubtract)
         btnMultiply = findViewById(R.id.btnMultiply)
@@ -34,7 +33,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         txtName2 = findViewById(R.id.txtName1)
         txtResult = findViewById(R.id.txtResult)
 
-        // Button click listeners
         btnAdd.setOnClickListener(this)
         btnSubtract.setOnClickListener(this)
         btnMultiply.setOnClickListener(this)
@@ -42,43 +40,31 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-
-        // Get numbers from EditText
         val number1 = txtName1.text.toString().toDoubleOrNull()
         val number2 = txtName2.text.toString().toDoubleOrNull()
-
-        // Check if user entered valid numbers
         if (number1 == null || number2 == null) {
             txtResult.text = "Please enter two numbers"
             return
         }
-
         var result = 0.0
-
         when (v?.id) {
-
             R.id.btnAdd -> {
                 result = number1 + number2
             }
-
             R.id.btnSubtract -> {
                 result = number1 - number2
             }
-
             R.id.btnMultiply -> {
                 result = number1 * number2
             }
-
             R.id.btnDivide -> {
                 if (number2 == 0.0) {
                     txtResult.text = "Cannot divide by zero"
                     return
                 }
-
                 result = number1 / number2
             }
         }
-
         txtResult.text = "Result: $result"
     }
 }
