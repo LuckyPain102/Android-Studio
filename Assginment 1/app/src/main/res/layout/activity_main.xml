@@ -9,10 +9,12 @@
 
     <TextView
         android:id="@+id/txtTitle"
-        android:layout_width="310dp"
-        android:layout_height="65dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="2"
+        android:gravity="center"
         android:layout_marginBottom="30dp"
-        android:text="Gymnastics App"
+        android:text="@string/title"
         android:textAlignment="center"
         android:textSize="40sp"
         android:textStyle="bold" />
@@ -21,9 +23,9 @@
         android:id="@+id/txtElement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:text="Element: 1 / 10"
-        android:textSize="30sp"
+        android:layout_marginBottom="30dp"
+        android:text="@string/element"
+        android:textSize="36sp"
         android:textStyle="bold" />
 
     <TextView
@@ -31,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
-        android:text="Score: 0"
+        android:text="@string/score"
         android:textSize="36sp"
         android:textStyle="bold" />
 
@@ -39,18 +41,24 @@
         android:id="@+id/btnPerform"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="Perform" />
+        android:text="@string/perform" />
 
     <Button
         android:id="@+id/btnDeduction"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="Deduction" />
+        android:text="@string/deduction" />
 
     <Button
         android:id="@+id/btnReset"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="Reset" />
+        android:text="@string/reset" />
+
+    <Button
+        android:id="@+id/btnLanguage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/language_button" />
 
 </LinearLayout>

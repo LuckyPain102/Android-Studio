@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Assignment1" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.Assignment1" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#FFFFFF</item>
+        <item name="colorPrimaryDark">#FFFFFF</item>
+        <item name="colorAccent">#0000FF</item>
+    </style>
+
 </resources>

@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">Assignment 1</string>
+    <string name="app_name">Gymnastics App</string>
+    <string name="title">Gymnastics App</string>
+    <string name="element">Element: %1$d / 10</string>
+    <string name="score">Score: %1$d</string>
+    <string name="perform">Perform</string>
+    <string name="deduction">Deduction</string>
+    <string name="reset">Reset</string>
+    <string name="routine_ended">Routine ended</string>
+    <string name="routine_complete">Routine complete!</string>
+    <string name="complete_first">Complete Element 1 first!</string>
+    <string name="deduction_ended">Routine ended due to deduction</string>
+    <string name="language_button">English / Tiếng Việt</string>
 </resources>

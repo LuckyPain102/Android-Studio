@@ -5,8 +5,10 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -65,6 +67,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 result = number1 / number2
             }
         }
-        txtResult.text = "Result: $result"
+        Toast.makeText(this, "Result: $result", Toast.LENGTH_LONG).show()
     }
 }

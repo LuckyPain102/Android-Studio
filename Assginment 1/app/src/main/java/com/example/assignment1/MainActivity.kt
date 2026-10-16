@@ -1,3 +1,4 @@
+
 package com.example.assignment1
 
 import android.os.Bundle
@@ -6,20 +7,26 @@ import android.graphics.Color
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.ComponentActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.LocaleListCompat
 
-class MainActivity : ComponentActivity(){
+class MainActivity : AppCompatActivity() {
+
     private lateinit var txtScore: TextView
     private lateinit var txtElement: TextView
     private lateinit var btnPerform: Button
     private lateinit var btnDeduction: Button
     private lateinit var btnReset: Button
+    private lateinit var btnLanguage: Button
 
     private var score = 0
     private var element = 1
     private var routineEnded = false
 
-    companion object{
+    private var currentLanguage = "en"
+
+    companion object {
         private const val TAG = "GymnasticsApp"
         private const val KEY_SCORE = "score"
         private const val KEY_ELEMENT = "element"
@@ -35,20 +42,28 @@ class MainActivity : ComponentActivity(){
         btnPerform = findViewById(R.id.btnPerform)
         btnDeduction = findViewById(R.id.btnDeduction)
         btnReset = findViewById(R.id.btnReset)
+        btnLanguage = findViewById(R.id.btnLanguage)
 
         if (savedInstanceState != null) {
             score = savedInstanceState.getInt(KEY_SCORE, 0)
             element = savedInstanceState.getInt(KEY_ELEMENT, 1)
-            routineEnded =
-                savedInstanceState.getBoolean(KEY_ENDED, false)
+            routineEnded = savedInstanceState.getBoolean(KEY_ENDED, false)
+        }
+
+        btnLanguage.setOnClickListener {
+            currentLanguage = if (currentLanguage == "en") "vi" else "en"
+
+            Log.d(TAG, "Switching language to: $currentLanguage")
+
+            AppCompatDelegate.setApplicationLocales(
+                LocaleListCompat.forLanguageTags(currentLanguage)
+            )
         }
 
         btnPerform.setOnClickListener {
             Log.d(TAG, "Perform button clicked")
 
-            if (routineEnded) {
-                return@setOnClickListener
-            }
+            if (routineEnded) return@setOnClickListener
 
             val points = when (element) {
                 in 1..3 -> 1
@@ -64,11 +79,12 @@ class MainActivity : ComponentActivity(){
 
             if (element == 10) {
                 routineEnded = true
+                Log.d(TAG, "Routine completed. Final score: $score")
 
                 Toast.makeText(
                     this,
-                    "Routine complete!",
-                    Toast.LENGTH_LONG
+                    getString(R.string.routine_complete),
+                    Toast.LENGTH_SHORT
                 ).show()
             } else {
                 element++
@@ -83,16 +99,13 @@ class MainActivity : ComponentActivity(){
             if (element == 1) {
                 Toast.makeText(
                     this,
-                    "Complete Element 1 first!",
+                    getString(R.string.complete_first),
                     Toast.LENGTH_SHORT
                 ).show()
-
                 return@setOnClickListener
             }
 
-            if (routineEnded) {
-                return@setOnClickListener
-            }
+            if (routineEnded) return@setOnClickListener
 
             score = (score - 2).coerceAtLeast(0)
             routineEnded = true
@@ -101,7 +114,7 @@ class MainActivity : ComponentActivity(){
 
             Toast.makeText(
                 this,
-                "Deduction applied. Routine ended!",
+                getString(R.string.deduction_ended),
                 Toast.LENGTH_SHORT
             ).show()
 
@@ -116,7 +129,6 @@ class MainActivity : ComponentActivity(){
             routineEnded = false
 
             Log.d(TAG, "Routine reset")
-
             updateUI()
         }
 
@@ -124,16 +136,16 @@ class MainActivity : ComponentActivity(){
     }
 
     private fun updateUI() {
-        txtScore.text = "Score: $score"
+        txtScore.text = getString(R.string.score, score)
 
         txtElement.text = if (routineEnded) {
-            if (element == 10 && score > 0) {
-                "Routine complete!"
+            if (element == 10) {
+                getString(R.string.routine_complete)
             } else {
-                "Routine ended"
+                getString(R.string.routine_ended)
             }
         } else {
-            "Element: $element / 10"
+            getString(R.string.element, element)
         }
 
         val scoreColor = when (element) {
@@ -153,6 +165,7 @@ class MainActivity : ComponentActivity(){
         outState.putInt(KEY_SCORE, score)
         outState.putInt(KEY_ELEMENT, element)
         outState.putBoolean(KEY_ENDED, routineEnded)
+
         super.onSaveInstanceState(outState)
     }
 }

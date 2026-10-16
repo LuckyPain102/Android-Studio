@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Ứng dụng Thể dục</string>
+    <string name="title">Ứng dụng Thể dục</string>
+    <string name="element">Động tác: %1$d / 10</string>
+    <string name="score">Điểm: %1$d</string>
+    <string name="perform">Thực hiện</string>
+    <string name="deduction">Trừ điểm</string>
+    <string name="reset">Đặt lại</string>
+    <string name="routine_ended">Bài thi đã kết thúc</string>
+    <string name="routine_complete">Hoàn thành bài thi!</string>
+    <string name="complete_first">Hãy hoàn thành động tác 1 trước!</string>
+    <string name="deduction_ended">Bài thi kết thúc do bị trừ điểm</string>
+    <string name="language_button">Tiếng Việt / English</string>
+</resources>
